@@ -646,36 +646,243 @@ p {
   font-size: 0.875rem;
 }
 
-/* === Process Steps === */
-.process-steps {
+/* === Process Timeline === */
+.process-timeline {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--space-lg);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-xl);
   position: relative;
 }
 
-.process-step {
+.process-card {
   text-align: center;
   position: relative;
+  padding: var(--space-lg) var(--space-md);
+  background: var(--color-dark-light);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition-base);
 }
 
-.process-step-number {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto var(--space-md);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.process-card:hover {
+  border-color: rgba(230, 57, 70, 0.3);
+  transform: translateY(-4px);
+}
+
+/* CSS-only dashed arrow between cards */
+.process-card:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * var(--space-xl));
+  width: var(--space-xl);
+  height: 2px;
+  background: repeating-linear-gradient(90deg,
+      var(--color-primary) 0,
+      var(--color-primary) 6px,
+      transparent 6px,
+      transparent 12px);
+  transform: translateY(-50%);
+}
+
+/* Arrow tip */
+.process-card:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * var(--space-xl) + 2px);
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--color-primary);
+  border-right: 2px solid var(--color-primary);
+  transform: translateY(-50%) rotate(45deg);
+  z-index: 2;
+}
+
+.process-card-number {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-white);
+  font-size: 4rem;
+  font-weight: 800;
+  color: rgba(230, 57, 70, 0.3);
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  pointer-events: none;
 }
 
-.process-step h3 {
+.process-card-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+  position: relative;
+  z-index: 1;
+}
+
+.process-card h3 {
   margin-bottom: var(--space-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.process-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.process-card-details {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-md);
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+
+.process-card-details li {
+  padding: 4px 0 4px 20px;
+  position: relative;
+  font-size: 1rem;
+  color: var(--color-gray-light);
+}
+
+.process-card-details li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .process-timeline {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .process-card:not(:last-child)::after,
+  .process-card:not(:last-child)::before {
+    display: none;
+  }
+
+  .process-card-number {
+    font-size: 3.5rem;
+  }
+}
+
+/* === Zigzag Timeline (Como Pedir page) === */
+.zigzag-timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Vertical center line */
+.zigzag-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: repeating-linear-gradient(180deg,
+      var(--color-primary) 0,
+      var(--color-primary) 8px,
+      transparent 8px,
+      transparent 16px);
+  transform: translateX(-50%);
+}
+
+.zigzag-step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  position: relative;
+  margin-bottom: var(--space-xxl, 4rem);
+}
+
+.zigzag-step:last-child {
+  margin-bottom: 0;
+}
+
+/* Dot on the center line */
+.zigzag-step::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow: 0 0 0 4px var(--color-dark), 0 0 0 6px var(--color-primary), 0 0 20px rgba(230, 57, 70, 0.4);
+}
+
+.zigzag-card {
+  background: var(--color-dark-light);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  position: relative;
+  transition: var(--transition-base);
+}
+
+.zigzag-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.zigzag-card .process-card-number {
+  position: absolute;
+  top: 12px;
+  left: 18px;
+}
+
+.zigzag-card .process-card-icon {
+  font-size: 2.8rem;
+  margin-bottom: var(--space-md);
+}
+
+.zigzag-card h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.zigzag-details {
+  padding: var(--space-lg) var(--space-md);
+}
+
+/* Reverse: swap column order */
+.zigzag-step.reverse {
+  direction: rtl;
+}
+
+.zigzag-step.reverse>* {
+  direction: ltr;
+}
+
+@media (max-width: 768px) {
+  .zigzag-timeline::before {
+    display: none;
+  }
+
+  .zigzag-step {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .zigzag-step::before {
+    display: none;
+  }
+
+  .zigzag-step.reverse {
+    direction: ltr;
+  }
+
 }
 
 /* === FAQ === */
