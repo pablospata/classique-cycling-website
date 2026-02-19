@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEMO 1: Gradient Orbs | Classique Cycling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Michroma&family=Montserrat:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* === DEMO 1: GRADIENT ORBS === */
+        .section,
+        .page-header {
+            background: transparent !important;
+        }
+
+        .bg-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            will-change: transform, opacity;
+        }
+
+        .bg-orb--1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(230, 57, 70, 0.18);
+            top: 5%;
+            left: -5%;
+            animation: orbFloat1 25s ease-in-out infinite;
+        }
+
+        .bg-orb--2 {
+            width: 450px;
+            height: 450px;
+            background: rgba(230, 57, 70, 0.14);
+            top: 45%;
+            right: -8%;
+            animation: orbFloat2 22s ease-in-out infinite;
+        }
+
+        .bg-orb--3 {
+            width: 400px;
+            height: 400px;
+            background: rgba(200, 40, 50, 0.12);
+            bottom: 10%;
+            left: 30%;
+            animation: orbFloat3 28s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.6;
+            }
+
+            33% {
+                transform: translate(50px, -60px) scale(1.15);
+                opacity: 1;
+            }
+
+            66% {
+                transform: translate(-30px, 40px) scale(0.9);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes orbFloat2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.5;
+            }
+
+            33% {
+                transform: translate(-45px, 50px) scale(1.1);
+                opacity: 1;
+            }
+
+            66% {
+                transform: translate(30px, -30px) scale(0.95);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes orbFloat3 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.5;
+            }
+
+            33% {
+                transform: translate(30px, -40px) scale(1.1);
+                opacity: 0.9;
+            }
+
+            66% {
+                transform: translate(-50px, 30px) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .navbar,
+        .page-header,
+        .section,
+        .cta-section,
+        .footer,
+        .whatsapp-float {
+            position: relative;
+            z-index: 1;
+        }
+
+        .demo-label {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: var(--color-primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 9999;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo-label">DEMO 1: GRADIENT ORBS</div>
+
+    <div class="bg-effect">
+        <div class="bg-orb bg-orb--1"></div>
+        <div class="bg-orb bg-orb--2"></div>
+        <div class="bg-orb bg-orb--3"></div>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand"><img src="images/classique-blanco.png"
+                    alt="Classique Cycling"><span class="brand-dots"><i></i><i></i><i></i><i></i><i></i></span></a>
+            <ul class="navbar-menu" id="navbar-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html" class="active">Productos</a></li>
+                <li><a href="portfolio.html">Trabajos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="como-pedir.html">¿Cómo Pedir?</a></li>
+                <li><a href="contacto.html" class="btn btn-primary">Contacto</a></li>
+            </ul>
+            <button class="navbar-toggle" id="navbar-toggle"
+                aria-label="Menú"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Nuestros <span class="text-accent">Productos</span></h1>
+            <p>Todos nuestros productos son 100% personalizables. Creamos el diseño exclusivo para tu equipo.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="products-grid">
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/jersey-aero.png" alt="Jersey Aero"></div>
+                    <div class="product-card-content">
+                        <h3>Jersey Aero</h3>
+                        <div class="product-card-price">$60.000</div>
+                        <p>Corte aerodinámico ajustado. Tela técnica de alta transpirabilidad con protección UV.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/maillot.png" alt="Maillot"></div>
+                    <div class="product-card-content">
+                        <h3>Maillot</h3>
+                        <div class="product-card-price">$65.000</div>
+                        <p>Corte clásico cómodo. Tres bolsillos traseros, cierre completo.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/jersey-manga-larga.png"
+                            alt="Jersey Manga Larga"></div>
+                    <div class="product-card-content">
+                        <h3>Jersey Manga Larga</h3>
+                        <div class="product-card-price">$65.000</div>
+                        <p>Ideal para media estación. Tela térmica liviana.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/maillot-largo.png" alt="Maillot Largo">
+                    </div>
+                    <div class="product-card-content">
+                        <h3>Maillot Largo</h3>
+                        <div class="product-card-price">$75.000</div>
+                        <p>Para días fríos. Interior cepillado térmico, exterior cortaviento.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/calza.png" alt="Calza"></div>
+                    <div class="product-card-content">
+                        <h3>Calza sin Tiradores</h3>
+                        <div class="product-card-price">$55.000</div>
+                        <p>Badana italiana de alta densidad. Lycra premium.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/chaleco.png" alt="Chaleco"></div>
+                    <div class="product-card-content">
+                        <h3>Chaleco</h3>
+                        <div class="product-card-price">$55.000</div>
+                        <p>Ultraliviano y plegable. Tela rompeviento.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/campera-rompeviento.png"
+                            alt="Campera Rompeviento"></div>
+                    <div class="product-card-content">
+                        <h3>Campera Rompeviento</h3>
+                        <div class="product-card-price">$75.000</div>
+                        <p>Liviana e impermeable. Costuras selladas.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/campera-frisada.png"
+                            alt="Campera Frisada"></div>
+                    <div class="product-card-content">
+                        <h3>Campera Frisada</h3>
+                        <div class="product-card-price">$75.000</div>
+                        <p>Interior polar suave. Ideal para entrenamientos de invierno.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Tu diseño, nuestra calidad</h2>
+            <p>Cada producto es personalizable al 100%. Sin plantillas, sin límites.</p>
+            <a href="contacto.html" class="btn btn-secondary">Contactanos</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Classique Cycling. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

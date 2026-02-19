@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEMO 6: Lightning Rays | Classique Cycling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Michroma&family=Montserrat:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* === DEMO 6: LIGHTNING RAYS === */
+        .section,
+        .page-header,
+        .cta-section {
+            background: transparent !important;
+        }
+
+        .bg-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Each ray is an SVG line that flashes in and fades out */
+        .ray {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .ray line {
+            stroke-linecap: round;
+        }
+
+        /* Red rays */
+        .ray--r line {
+            stroke: rgba(230, 57, 70, 0.6);
+            filter: drop-shadow(0 0 6px rgba(230, 57, 70, 0.3));
+        }
+
+        /* White rays */
+        .ray--w line {
+            stroke: rgba(255, 255, 255, 0.2);
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.1));
+        }
+
+        /* Staggered flash animations */
+        .ray:nth-child(1) {
+            top: 5%;
+            left: 10%;
+            animation: rayFlash 6s ease-in-out infinite 0s;
+        }
+
+        .ray:nth-child(2) {
+            top: 12%;
+            left: 70%;
+            animation: rayFlash 8s ease-in-out infinite -2s;
+        }
+
+        .ray:nth-child(3) {
+            top: 28%;
+            left: 40%;
+            animation: rayFlash 7s ease-in-out infinite -4.5s;
+        }
+
+        .ray:nth-child(4) {
+            top: 35%;
+            left: 85%;
+            animation: rayFlash 9s ease-in-out infinite -1s;
+        }
+
+        .ray:nth-child(5) {
+            top: 48%;
+            left: 15%;
+            animation: rayFlash 7.5s ease-in-out infinite -6s;
+        }
+
+        .ray:nth-child(6) {
+            top: 55%;
+            left: 55%;
+            animation: rayFlash 6.5s ease-in-out infinite -3s;
+        }
+
+        .ray:nth-child(7) {
+            top: 65%;
+            left: 25%;
+            animation: rayFlash 8.5s ease-in-out infinite -5s;
+        }
+
+        .ray:nth-child(8) {
+            top: 72%;
+            left: 78%;
+            animation: rayFlash 7s ease-in-out infinite -7s;
+        }
+
+        .ray:nth-child(9) {
+            top: 82%;
+            left: 45%;
+            animation: rayFlash 9s ease-in-out infinite -2.5s;
+        }
+
+        .ray:nth-child(10) {
+            top: 90%;
+            left: 8%;
+            animation: rayFlash 6s ease-in-out infinite -4s;
+        }
+
+        @keyframes rayFlash {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            4% {
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            8% {
+                opacity: 0.7;
+            }
+
+            12% {
+                opacity: 0;
+            }
+
+            /* stays hidden most of the cycle */
+        }
+
+        /* Ensure content stays above the effect */
+        .navbar,
+        .page-header,
+        .section,
+        .cta-section,
+        .footer,
+        .whatsapp-float {
+            position: relative;
+            z-index: 1;
+        }
+
+        .demo-label {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: var(--color-primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 9999;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo-label">DEMO 6: LIGHTNING RAYS</div>
+
+    <div class="bg-effect">
+        <!-- Ray 1: Zigzag bolt going down-right -->
+        <svg class="ray ray--r" width="120" height="200" viewBox="0 0 120 200">
+            <line x1="10" y1="0" x2="60" y2="50" stroke-width="1.5" />
+            <line x1="60" y1="50" x2="30" y2="80" stroke-width="1.5" />
+            <line x1="30" y1="80" x2="80" y2="140" stroke-width="1.5" />
+            <line x1="80" y1="140" x2="50" y2="180" stroke-width="1" />
+        </svg>
+
+        <!-- Ray 2: Short diagonal bolt -->
+        <svg class="ray ray--w" width="80" height="150" viewBox="0 0 80 150">
+            <line x1="70" y1="0" x2="30" y2="60" stroke-width="1" />
+            <line x1="30" y1="60" x2="55" y2="90" stroke-width="1" />
+            <line x1="55" y1="90" x2="20" y2="140" stroke-width="0.8" />
+        </svg>
+
+        <!-- Ray 3: Long bolt -->
+        <svg class="ray ray--r" width="100" height="250" viewBox="0 0 100 250">
+            <line x1="20" y1="0" x2="70" y2="60" stroke-width="1.5" />
+            <line x1="70" y1="60" x2="35" y2="110" stroke-width="1.5" />
+            <line x1="35" y1="110" x2="80" y2="170" stroke-width="1" />
+            <line x1="80" y1="170" x2="45" y2="240" stroke-width="0.8" />
+        </svg>
+
+        <!-- Ray 4: Small sharp bolt -->
+        <svg class="ray ray--w" width="60" height="100" viewBox="0 0 60 100">
+            <line x1="50" y1="0" x2="15" y2="40" stroke-width="1" />
+            <line x1="15" y1="40" x2="45" y2="65" stroke-width="1" />
+            <line x1="45" y1="65" x2="10" y2="95" stroke-width="0.8" />
+        </svg>
+
+        <!-- Ray 5: Medium bolt, left-leaning -->
+        <svg class="ray ray--r" width="90" height="180" viewBox="0 0 90 180">
+            <line x1="80" y1="0" x2="40" y2="50" stroke-width="1.5" />
+            <line x1="40" y1="50" x2="70" y2="95" stroke-width="1" />
+            <line x1="70" y1="95" x2="25" y2="170" stroke-width="1" />
+        </svg>
+
+        <!-- Ray 6: Quick zap -->
+        <svg class="ray ray--w" width="70" height="120" viewBox="0 0 70 120">
+            <line x1="10" y1="0" x2="55" y2="45" stroke-width="1" />
+            <line x1="55" y1="45" x2="20" y2="75" stroke-width="1" />
+            <line x1="20" y1="75" x2="60" y2="115" stroke-width="0.8" />
+        </svg>
+
+        <!-- Ray 7: Bold bolt -->
+        <svg class="ray ray--r" width="110" height="220" viewBox="0 0 110 220">
+            <line x1="15" y1="0" x2="75" y2="70" stroke-width="2" />
+            <line x1="75" y1="70" x2="30" y2="120" stroke-width="1.5" />
+            <line x1="30" y1="120" x2="90" y2="180" stroke-width="1" />
+            <line x1="90" y1="180" x2="55" y2="215" stroke-width="0.8" />
+        </svg>
+
+        <!-- Ray 8: Thin accent -->
+        <svg class="ray ray--w" width="50" height="90" viewBox="0 0 50 90">
+            <line x1="40" y1="0" x2="10" y2="35" stroke-width="0.8" />
+            <line x1="10" y1="35" x2="35" y2="60" stroke-width="0.8" />
+            <line x1="35" y1="60" x2="5" y2="85" stroke-width="0.6" />
+        </svg>
+
+        <!-- Ray 9: Mid bolt -->
+        <svg class="ray ray--r" width="95" height="190" viewBox="0 0 95 190">
+            <line x1="85" y1="0" x2="35" y2="55" stroke-width="1.5" />
+            <line x1="35" y1="55" x2="70" y2="100" stroke-width="1" />
+            <line x1="70" y1="100" x2="20" y2="180" stroke-width="1" />
+        </svg>
+
+        <!-- Ray 10: Small flash -->
+        <svg class="ray ray--r" width="65" height="110" viewBox="0 0 65 110">
+            <line x1="5" y1="0" x2="50" y2="40" stroke-width="1" />
+            <line x1="50" y1="40" x2="15" y2="70" stroke-width="1" />
+            <line x1="15" y1="70" x2="55" y2="105" stroke-width="0.8" />
+        </svg>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand"><img src="images/classique-blanco.png"
+                    alt="Classique Cycling"><span class="brand-dots"><i></i><i></i><i></i><i></i><i></i></span></a>
+            <ul class="navbar-menu" id="navbar-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html" class="active">Productos</a></li>
+                <li><a href="portfolio.html">Trabajos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="como-pedir.html">¿Cómo Pedir?</a></li>
+                <li><a href="contacto.html" class="btn btn-primary">Contacto</a></li>
+            </ul>
+            <button class="navbar-toggle" id="navbar-toggle"
+                aria-label="Menú"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Nuestros <span class="text-accent">Productos</span></h1>
+            <p>Todos nuestros productos son 100% personalizables. Creamos el diseño exclusivo para tu equipo.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="products-grid">
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/jersey-aero.png" alt="Jersey Aero"></div>
+                    <div class="product-card-content">
+                        <h3>Jersey Aero</h3>
+                        <div class="product-card-price">$60.000</div>
+                        <p>Corte aerodinámico ajustado. Tela técnica de alta transpirabilidad con protección UV.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/maillot.png" alt="Maillot"></div>
+                    <div class="product-card-content">
+                        <h3>Maillot</h3>
+                        <div class="product-card-price">$65.000</div>
+                        <p>Corte clásico cómodo. Tres bolsillos traseros, cierre completo.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/jersey-manga-larga.png"
+                            alt="Jersey Manga Larga"></div>
+                    <div class="product-card-content">
+                        <h3>Jersey Manga Larga</h3>
+                        <div class="product-card-price">$65.000</div>
+                        <p>Ideal para media estación. Tela térmica liviana.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/maillot-largo.png" alt="Maillot Largo">
+                    </div>
+                    <div class="product-card-content">
+                        <h3>Maillot Largo</h3>
+                        <div class="product-card-price">$75.000</div>
+                        <p>Para días fríos. Interior cepillado térmico, exterior cortaviento.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/calza.png" alt="Calza"></div>
+                    <div class="product-card-content">
+                        <h3>Calza sin Tiradores</h3>
+                        <div class="product-card-price">$55.000</div>
+                        <p>Badana italiana de alta densidad. Lycra premium.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/chaleco.png" alt="Chaleco"></div>
+                    <div class="product-card-content">
+                        <h3>Chaleco</h3>
+                        <div class="product-card-price">$55.000</div>
+                        <p>Ultraliviano y plegable. Tela rompeviento.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/campera-rompeviento.png"
+                            alt="Campera Rompeviento"></div>
+                    <div class="product-card-content">
+                        <h3>Campera Rompeviento</h3>
+                        <div class="product-card-price">$75.000</div>
+                        <p>Liviana e impermeable. Costuras selladas.</p>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-card-image"><img src="images/productos/campera-frisada.html"
+                            alt="Campera Frisada"></div>
+                    <div class="product-card-content">
+                        <h3>Campera Frisada</h3>
+                        <div class="product-card-price">$75.000</div>
+                        <p>Interior polar suave. Ideal para entrenamientos de invierno.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Tu diseño, nuestra calidad</h2>
+            <p>Cada producto es personalizable al 100%. Sin plantillas, sin límites.</p>
+            <a href="contacto.html" class="btn btn-secondary">Contactanos</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Classique Cycling. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
