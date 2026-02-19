@@ -96,7 +96,7 @@
                     </div>
                 </div>
 
-                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <form class="contact-form" id="contactForm">
                     <h3 style="margin-bottom: var(--space-md);">Envianos tu consulta</h3>
 
                     <div class="form-group">
@@ -139,6 +139,28 @@
 
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar consulta</button>
                 </form>
+                <script>
+                    document.getElementById('contactForm').addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        var nombre = document.getElementById('nombre').value.trim();
+                        var equipo = document.getElementById('equipo').value.trim();
+                        var email = document.getElementById('email').value.trim();
+                        var cantidad = document.getElementById('cantidad').value;
+                        var productos = document.getElementById('productos').value.trim();
+                        var mensaje = document.getElementById('mensaje').value.trim();
+
+                        var texto = 'Hola! Les escribo desde la web de Classique.\n\n';
+                        texto += '*Nombre:* ' + nombre + '\n';
+                        if (equipo) texto += '*Equipo:* ' + equipo + '\n';
+                        texto += '*Email:* ' + email + '\n';
+                        if (cantidad) texto += '*Cantidad de prendas:* ' + cantidad + '\n';
+                        if (productos) texto += '*Productos:* ' + productos + '\n';
+                        if (mensaje) texto += '\n*Mensaje:*\n' + mensaje;
+
+                        var url = 'https://wa.me/5492345412422?text=' + encodeURIComponent(texto);
+                        window.open(url, '_blank');
+                    });
+                </script>
             </div>
         </div>
     </section>
