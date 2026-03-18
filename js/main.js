@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initScrollAnimations();
     initFAQ();
     initPortfolioFilter();
+    initLightbox();
 });
 
 /* === Navbar Scroll Effect === */
@@ -176,4 +177,83 @@ function formatPrice(price) {
         currency: 'ARS',
         minimumFractionDigits: 0
     }).format(price);
+}
+
+/* === Lightbox Gallery === */
+function initLightbox() {
+    var overlay = document.getElementById('lightbox-overlay');
+    if (!overlay) return;
+
+    var img = document.getElementById('lightbox-img');
+    var counter = document.getElementById('lightbox-counter');
+    var btnClose = document.getElementById('lightbox-close');
+    var btnPrev = document.getElementById('lightbox-prev');
+    var btnNext = document.getElementById('lightbox-next');
+
+    var gallery = [];
+    var currentIndex = 0;
+
+    function openLightbox(images, startIndex) {
+        gallery = images;
+        currentIndex = startIndex || 0;
+        showImage();
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showImage() {
+        img.src = gallery[currentIndex];
+        img.alt = 'Imagen ' + (currentIndex + 1) + ' de ' + gallery.length;
+        counter.textContent = (currentIndex + 1) + ' / ' + gallery.length;
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % gallery.length;
+        showImage();
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + gallery.length) % gallery.length;
+        showImage();
+    }
+
+    // Click on gallery cards
+    var galleryCards = document.querySelectorAll('.has-gallery');
+    galleryCards.forEach(function (card) {
+        card.addEventListener('click', function () {
+            var images = JSON.parse(card.getAttribute('data-gallery'));
+            openLightbox(images, 0);
+        });
+    });
+
+    // Controls
+    btnClose.addEventListener('click', closeLightbox);
+    btnPrev.addEventListener('click', function (e) {
+        e.stopPropagation();
+        prevImage();
+    });
+    btnNext.addEventListener('click', function (e) {
+        e.stopPropagation();
+        nextImage();
+    });
+
+    // Close on overlay click (not on image)
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+    });
 }
