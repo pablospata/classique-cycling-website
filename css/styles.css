@@ -984,6 +984,7 @@ p {
 
 .faq-answer p {
   padding: 0 var(--space-md) var(--space-md);
+  color: #e2e2e2;
 }
 
 /* === Contact Form === */
